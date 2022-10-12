@@ -9,7 +9,7 @@ class MaxMinCountWindspeed(MRJob):
     def mapper(self, _, line):
         val = line.strip()
         (wind_dir, temp, q_temp, q_wind_dir) = (val[60:63], val[87:92], val[92:93], val[63:64])
-        if (temp != "+9999" and re.match(QUALITY_RE, q_temp) and wind_dir != "+999" and re.match(QUALITY_RE, q_wind_dir)):
+        if (temp != "+9999" and re.match(QUALITY_RE, q_temp) and wind_dir != "999" and re.match(QUALITY_RE, q_wind_dir)):
             yield wind_dir, {"max":int(temp), "min":int(temp), "count":1}
 
     def reducer(self, key, values):
